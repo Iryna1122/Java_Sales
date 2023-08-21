@@ -95,10 +95,9 @@ public class Task4Servlet extends HttpServlet {
 
             out.println("<p>Показати товар, що найбільше користується попитом</p>");
 
-            String command9 = "SELECT s.product_id AS product_id, p.name AS product_name, " +
+            String command9 = "SELECT s.name AS product_name, s.id AS product_id, " +
                     "SUM(s.quantity) AS total_quantity " +
                     "FROM Sale s " +
-                    "JOIN Product p ON s.product_id = p.id " +
                     "GROUP BY s.product_id, p.name " +
                     "ORDER BY total_quantity DESC " +
                     "LIMIT 1";
@@ -110,7 +109,8 @@ public class Task4Servlet extends HttpServlet {
                     String productName = set4.getString("product_name");
                     int totalQuantity = set4.getInt("total_quantity");
 
-                    out.println("<p>Product ID: " + productId + ", Product Name: " + productName + ", Total Quantity: " + totalQuantity + "</p>");
+                    out.println("<p>Product ID: " + productId + ", Product Name: " + productName + ", Total Quantity: "
+                            + totalQuantity + "</p>");
                 } else {
                     out.println("<p>Немає даних про товари</p>");
                 }
